@@ -116,26 +116,41 @@ graph TD
     E --> F[🏁 End]
 
     subgraph "json_combo.py"
-    B1[🔄 Combine multiple annotation files]
-    B2[📁 Merge images into single folder]
-    B3[🖼️ Plot combined annotations]
+    B1[📂 Scan input folders]
+    B2[🖼️ Plot original annotations]
+    B3[🚫 Check for missing images]
+    B4[🔗 Combine JSON files]
+    B5[📁 Merge images into single folder]
+    B6[🎨 Plot combined annotations]
+    B1 --> B2 --> B3 --> B4 --> B5 --> B6
     end
 
     subgraph "train_val_split.py"
-    C1[✂️ Split dataset into train and test]
-    C2[💾 Save split annotations]
-    C3[📋 Copy split images]
-    C4[🖼️ Plot split annotations]
+    C1[📊 Load combined data]
+    C2[🔍 Verify images]
+    C3[✂️ Split dataset]
+    C4[💾 Save split annotations]
+    C5[📋 Copy split images]
+    C6[🖼️ Plot split annotations]
+    C1 --> C2 --> C3 --> C4 --> C5 --> C6
     end
 
     subgraph "augment.py"
-    D1[🔬 Augment train and test images]
-    D2[📝 Update annotations for augmented images]
-    D3[🖼️ Plot augmented annotations]
+    D1[📁 Load split datasets]
+    D2[🔧 Apply augmentations]
+    D3[🖼️ Generate augmented images]
+    D4[📝 Update annotations]
+    D5[💾 Save augmented data]
+    D6[🎨 Plot augmented annotations]
+    D1 --> D2 --> D3 --> D4 --> D5 --> D6
     end
 
     subgraph "plotting.py"
-    E1[🎨 Plot final augmented annotations]
+    E1[📊 Load augmented datasets]
+    E2[🖼️ Draw contours]
+    E3[📝 Add text overlays]
+    E4[💾 Save visualized images]
+    E1 --> E2 --> E3 --> E4
     end
 
     B --> B1 --> B2 --> B3
